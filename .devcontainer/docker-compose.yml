@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  mlc:
+    build:
+      context: ..
+      dockerfile: ./.devcontainer/Dockerfile
+      args:
+        - "VARIANT=3.10-bullseye"
+        - "NODE_VERSION=lts/*"
+
+    container_name: mlc-devcon
+
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ..:/workspaces/my-lovely-cat:cached
+    
+    networks:
+      - mlc-network
+    
+    command: sleep infinity
+
+networks:
+  mlc-network:
+    name: mlc-network
+    external: true
