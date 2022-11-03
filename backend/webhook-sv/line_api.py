@@ -4,7 +4,7 @@ import base64, hashlib, hmac,os
 from dotenv import load_dotenv
 from common_lib.pub_sub_client import Publisher
 
-load_dotenv('../.env')
+load_dotenv()
 
 LINE_CHANNEL_SECRET=os.environ['LINE_CHANNEL_SECRET']
 RABBITMQ_HOST=os.environ['RABBITMQ_HOST']

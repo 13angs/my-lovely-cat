@@ -11,8 +11,9 @@ from dotenv import load_dotenv
 import os
 
 # Load all env
-load_dotenv('../.env')
+load_dotenv()
 DEBUG=os.environ['DEBUG']
+
 
 app = Flask(__name__)
 api = Api(app)
