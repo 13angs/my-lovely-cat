@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  mlc-rabbitmq-server:
+    image: rabbitmq:3-management
+    container_name: mlc-rabbitmq-server
+    hostname: mlc-rabbitmq-server
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    
+    networks:
+      - mlc-network
+
+networks:
+  mlc-network:
+    name: mlc-network
+    external: true
