@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  mlc-webhook-sv:
+    image: 13angs/mlc-webhook-sv:latest
+    container_name: mlc-webhook-sv
+    volumes:
+      - ./.env:/usr/src/app/.env:rw
+    build:
+      context: ../../../../backend
+      dockerfile: ./webhook-sv/Dockerfile
+
+    networks:
+      - mlc-network
+
+  mlc-webhook-sv-reverse-proxy:
+    image: nginx:1.21.6-alpine
+    ports:
+      - "8000:80"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d:ro
+    networks:
+      - mlc-network
+
+networks:
+  mlc-network:
+    name: mlc-network
+    external: true
